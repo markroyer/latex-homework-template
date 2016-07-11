@@ -1,0 +1,365 @@
+\documentclass{article}
+% Change "article" to "report" to get rid of page number on title page
+% \usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{extramarks}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage{lstcustom}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{url}
+
+\usepackage{tikz}
+
+\usepackage{totcount} % For the total points
+
+% In case you need to adjust margins:
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+% Commands for points
+\newtotcounter{points}
+\newcommand*{\totalpoints}{\thepoints}
+\newcommand{\pts}[1]{\addtocounter{points}{#1}(#1pt)}
+
+\newtotcounter{ecpoints}
+\newcommand*{\totalecpoints}{\theecpoints}
+\newcommand{\ecpts}[1]{\addtocounter{ecpoints}{#1}(#1pt)}
+
+% Exercise Specific Information
+\newcommand{\hmwkTitle}{\underline{HW 01}}
+\newcommand{\hmwkDueDate}{Due 2016-07-10 8:00 a.m.}
+\newcommand{\hmwkClass}{COS 101}
+\newcommand{\hmwkPoints}{ \ref{lastQuestion} questions; \protect\total{points} points + \protect{\total{ecpoints}} ec; \pageref{LastPage} pgs.}
+
+\newcommand{\wordspace}[1][1]{\underline{\hspace{#1in}}}
+
+% Setup the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkClass\ \hmwkTitle} 
+\chead{\hmwkPoints}
+\rhead{\hmwkDueDate}
+\lfoot{\lastxmark}  
+\cfoot{}            
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}}
+\renewcommand\headrulewidth{0.4pt} 
+\renewcommand\footrulewidth{0.4pt}
+
+% Whitespace symbol using the beramono font.
+\newcommand{\ws}{\texttt{\textvisiblespace}}
+
+\newcommand{\truefalse}[1]{
+  \item \underline{\hspace{2cm}} \pts{2} #1
+}
+
+\newcommand{\anspace}{
+  \underline{\hspace*{1in}}
+}
+
+\newcommand{\tspace}{\vspace{4cm}}
+
+% Setup the code listings look
+\lstset{
+  language=C++,
+  style=eclipse,
+  showspaces=false, 
+  numbers=left,
+  frame=none
+}
+
+
+\newcommand{\op}[1]{\lstinline$#1$}
+
+\begin{document}
+\begin{spacing}{1.1}
+
+\begin{enumerate}[leftmargin=*]
+\item \pts{1} \textbf{Name:} \hrulefill % \underline{\hspace{4in}}
+
+Both the electronic and paper portion of this assignment are due at the
+beginning of class.  Assignments after 8am will be considered late.
+Ensuring that the electronic portion of the assignment is submitted
+on-time and in the correct format is critical.  Make sure to leave
+yourself plenty of time to submit the project.
+
+\item \pts{4} Write the MD5 hash of your submitted code
+  here. \hrulefill % \underline{\hspace*{3in}}\\
+
+~
+
+\item \pts{4} How many iterations does the following loop make? \anspace
+
+\begin{lstlisting} 
+int count = 1;
+while (count < 30) {
+   count = count * 2;
+}
+\end{lstlisting}
+
+\item \pts{4} How many iterations does the following loop make? \anspace
+
+\begin{lstlisting}
+int count = 15;
+while (count < 30) {
+   count = count * 3;
+}
+\end{lstlisting}
+
+\item \pts{4} How many iterations does the following loop make? \anspace
+
+\begin{lstlisting}
+int count = 1;
+while (count < n) {
+   count = count * 2;
+}
+\end{lstlisting}
+
+\item \pts{4} How many iterations does the following loop make? \anspace
+
+\begin{lstlisting}
+int count = 15;
+while (count < n) {
+   count = count * 3;
+}
+\end{lstlisting}
+
+\item \pts{24} For each of the following code snippets, determine how many
+  stars are displayed for $n=5,10,20$.  Use the Big $O$ notation to
+  estimate the time complexity.
+
+\begin{enumerate}
+
+\item ~
+
+\vspace{-\baselineskip}
+\begin{lstlisting}[xleftmargin=.25in]
+for (int i = 0; i < n; i++) {
+   cout << '*';
+}
+\end{lstlisting} 
+
+\tspace
+
+\item ~
+
+\vspace{-\baselineskip}
+\begin{lstlisting}[xleftmargin=.25in]
+for (int i = 0; i < n; i++) {
+   for (int j = 0; j < n; j++) {
+      cout << '*';
+   }
+}
+\end{lstlisting} 
+
+\tspace
+
+\item ~
+
+\vspace{-\baselineskip}
+\begin{lstlisting}[numbers=none]
+for (int k = 0; k < n; k++) {
+   for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+         cout << '*';
+      }
+   }
+}
+\end{lstlisting} 
+
+\tspace
+
+\item ~
+
+\vspace{-\baselineskip}
+\begin{lstlisting}[numbers=none]
+for (int k = 0; k < 10; k++) {
+   for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+         cout << '*';
+      }
+   }
+}
+\end{lstlisting} 
+
+\tspace
+
+\end{enumerate}
+
+\newpage
+
+\item \pts{8} Design an $O(n)$ time algorithm for computing the sum of
+  integers from $n_1$ to $n_2$ where $0 \le n_1 \le n_2$.
+
+\tspace
+
+\item \pts{7} Is it possible to improve the performance of the algorithm from
+  the previous question so that it is $O(1)$ (a constant time
+  algorithm)? If it is possible, provide the algorithm; if not,
+  explain why it is not possible to create such an algorithm.
+
+\tspace
+
+\end{enumerate}
+
+\subsection*{Electronic Submission}
+
+\lstset{
+  breaklines=false
+}
+
+\begin{enumerate}[leftmargin=*, resume]
+
+\item\label{lastQuestion} \pts{80} You will write a program that will
+  aid in evaluating the performance of the sorting routines we have
+  discussed in class.  Specifically, your program should perform tests
+  on the \lstinline$bubbleSort$, \lstinline$insertionSort$,
+  \lstinline$mergeSort$, and \lstinline$selectionSort$ functions
+  defined in \lstinline$sort.cpp$ that is posted to the course
+  documents
+  page\footnote{\url{https://raw.githubusercontent.com/wiki/markroyer/latex-homework-template/homework-examples.tgz}}. Modify
+  the functions so that they return a \lstinline$long long$ value that
+  represents the amount of operations required to complete the sort.
+
+Typing \textbf{make} at the root of your project submission will
+create an executable file called \textbf{analyze}. Your program will
+make use of commandline arguments to determine which files to
+load, what sorting routine to execute, and the number of files that
+will be loaded.  You will make use of the files 
+
+\textbf{asc1.txt, \dots , asc10.txt},
+
+\textbf{desc1.txt, \dots , desc10.txt}, and
+
+\textbf{random1.txt, \dots , random10.txt}
+
+that are posted to the course documents page. The \textbf{asc},
+\textbf{desc}, and \textbf{random} files contain dictionary words in
+ascending, descending, and random order respectively. The program
+should be invoked in the following manner:
+
+\begin{verbatim}
+analyze SORT FILENAMEPREFIX NUM
+\end{verbatim}
+
+The program arguments are defined as follows:
+
+\begin{description}
+
+\item[SORT] \hfill \\ The name of one of the sorting routines mentioned above.  Valid
+options are \lstinline$bubbleSort$, \lstinline$insertionSort$,
+\lstinline$mergeSort$, and \lstinline$selectionSort$.
+
+\item[FILENAMEPREFIX] \hfill \\ The name of the file to be loaded without the
+  number or \texttt{.txt} extension.  For this assignment, we will use \lstinline$asc$,
+  \lstinline$desc$, and \lstinline$random$.
+
+\item[NUM] \hfill \\ The number of files to be read.
+
+\end{description}
+
+The output of the program is a single file named
+\textbf{SORT-FILENAMEPREFIX.data} that contains two columns of data
+separated by a single tab (\lstinline$"\t"$).  The first column is the
+number of words in the file, and the second column is the amount of
+operations it took for the function to sort the data.  The output file
+may have lines containing descriptive information as long as those
+lines begin with a \texttt{\#} symbol.
+
+\subsubsection*{Example}
+
+Suppose that the program was run with the options as shown below:
+
+\begin{verbatim}
+analyze selectionSort asc 10
+\end{verbatim}
+
+This would generate the output file
+\textbf{\texttt{selectionSort-asc.data}}.  The contents of the file
+would have ten lines of output (one for each file) and look similar to
+the following:
+
+\begin{lstlisting}[language=java,numbers=none]
+# Result of running selectionSort on asc1-10
+# n	ops
+10	100
+100	10000
+1000	1000000
+etc ...
+\end{lstlisting}
+
+For each sorting routine, use the generated output file from your
+program to graph the results versus the expected time
+complexity for the chosen sorting algorithm. Put these results and a
+brief discussion of why or why not your results match the theoretical
+ones in a single pdf file named \textbf{results.pdf}.
+
+\textbf{Note:} As with previous assignments, no other output should be
+generated by the program.  You will lose points if the specification
+is not strictly adhered to.
+
+\textbf{Submission:} Submit a single tgz file to
+\url{http://yoursite.com/u/} using the following
+naming convention.
+
+\begin{verbatim}
+lastname-hwNN-SNUM.tgz
+\end{verbatim}
+
+You should replace \emph{lastname} with your last name, \emph{NN} with
+the assignment number (eg. 05), and \emph{SNUM} with a four digit
+number specifying the submission version.  Extracting the contents of
+the tarball should create a single folder containing your project
+following the naming convention above without the extension.  The
+folder should contain the following files:
+
+\begin{description}
+  \item[README] A file that describes the submission content and how
+    to build and run your program.
+  \item[Makefile] The script for building your project.
+  \item[Doxyfile] Doxygen input file for creating documentation.
+  \item[sort.cpp] Source file containing the main function, the
+    sorting functions, and any other additional functions that may be
+    needed.
+  \item[results.pdf] 
+\end{description}
+
+\textbf{Important:} Make sure that your submission does not include
+generated files such as object files and doxygen output
+documentation. You may lose points if this is not strictly followed.
+
+\textbf{Questions:} For clarification, please post additional questions to the
+newsgroup.
+
+\end{enumerate}
+
+~\\
+~\\
+
+\noindent
+\textbf{Extra Credit*} \ecpts{10} In the textbook the author claims
+that $O(\log n) = O(\log_2 n) = O(log_a n)$.  Does the same hold for
+$\Theta$? That is, can we say that for all positive real numbers $a$
+and $b$ where $a \ne 1, b \ne 1$ does $\Theta(\log_a n) = \Theta(\log_b n)$? If so, prove that the
+equality holds, otherwise show why it does not.
+
+\vspace{12cm}
+
+\noindent
+\textbf{Extra Credit*} \ecpts{30} Modify the \textbf{analyze} program
+to support \textbf{externalSort}. Perform the same analysis of the
+sorting routine using the ascending, descending, and random input
+files from the homework and summarize the results.  Append these
+results to the end of your \textbf{results.pdf} file.
+\end{spacing}
+
+
+\end{document}
+
+
