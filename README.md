@@ -37,6 +37,12 @@ make clean
 
 will remove all generated files.
 
+## Thanks
+
+This homework template was influenced heavily by homework formats
+given by Sudarshan Chawathe.  You can view some of his work at his web
+site: [cs.umaine.edu/~chaw](http://cs.umaine.edu/~chaw).
+
 ## License
 
 The project is licensed under the terms of the
